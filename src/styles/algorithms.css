@@ -1,0 +1,166 @@
+/**
+ * Algorithmic Art Styles - Font Showcase Site
+ * CSS-based generative patterns and effects
+ */
+
+/* ============================================
+   Flow Field Background
+   ============================================ */
+
+.flow-field {
+  position: relative;
+  overflow: hidden;
+}
+
+.flow-field::before {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 40px,
+      rgba(0, 0, 0, 0.02) 40px,
+      rgba(0, 0, 0, 0.02) 41px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 40px,
+      rgba(0, 0, 0, 0.02) 40px,
+      rgba(0, 0, 0, 0.02) 41px
+    );
+  transform: perspective(500px) rotateX(60deg);
+  animation: flow-field-move 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes flow-field-move {
+  0% {
+    transform: perspective(500px) rotateX(60deg) translateY(0);
+  }
+  100% {
+    transform: perspective(500px) rotateX(60deg) translateY(40px);
+  }
+}
+
+/* ============================================
+   Particle Network
+   ============================================ */
+
+.particle-network {
+  position: relative;
+  min-height: 400px;
+}
+
+.particle-network__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ============================================
+   Typography Pattern
+   ============================================ */
+
+.typo-pattern {
+  position: relative;
+  overflow: hidden;
+}
+
+.typo-pattern::before {
+  content: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(0, 0, 0, 0.03);
+  white-space: pre-wrap;
+  word-break: break-all;
+  transform: rotate(-5deg) scale(1.2);
+  pointer-events: none;
+  top: -10%;
+  left: -10%;
+  right: -10%;
+  bottom: -10%;
+}
+
+.dark .typo-pattern::before {
+  color: rgba(255, 255, 255, 0.02);
+}
+
+/* ============================================
+   Wave Pattern
+   ============================================ */
+
+.wave-pattern {
+  position: relative;
+  overflow: hidden;
+}
+
+.wave-pattern::before,
+.wave-pattern::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: repeat-x;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+.wave-pattern::before {
+  top: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.79C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' fill='%23000' opacity='.25'/%3E%3C/svg%3E");
+  background-size: 1200px 100px;
+  animation: wave-move 20s linear infinite;
+}
+
+.wave-pattern::after {
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,32.39-172,41.86-82.54,13.48-168.51-4.39-246.09-37.15C9.7,7.83,4.77,4.66,0,0V120H1200V95.29c-21.96,10.22-45.66,17.68-70.4,21.69C1049.38,126.7,1016.06,111.87,985.66,92.83Z' fill='%23000' opacity='.25'/%3E%3C/svg%3E");
+  background-size: 1200px 100px;
+  animation: wave-move 25s linear infinite reverse;
+}
+
+@keyframes wave-move {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: -1200px;
+  }
+}
+
+/* ============================================
+   Responsive Adjustments
+   ============================================ */
+
+@media (max-width: 768px) {
+  .flow-field::before {
+    background-size: 30px 30px;
+    animation-duration: 15s;
+  }
+  
+  .wave-pattern::before,
+  .wave-pattern::after {
+    height: 50px;
+    background-size: 600px 50px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .flow-field::before,
+  .wave-pattern::before,
+  .wave-pattern::after {
+    animation: none;
+  }
+  
+  .typo-pattern::before {
+    transform: rotate(-5deg) scale(1.2);
+  }
+}

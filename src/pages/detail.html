@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="字体详情 - 查看字体信息、预览效果、下载字体文件">
+  <title>字体详情 | 字境</title>
+  
+  <!-- HarmonyOS Sans Font -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/harmonyos-sans@1.0.0/dist/index.css">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="../styles/variables.css">
+  <link rel="stylesheet" href="../styles/reset.css">
+  <link rel="stylesheet" href="../styles/typography.css">
+  <link rel="stylesheet" href="../styles/layout.css">
+  <link rel="stylesheet" href="../styles/components.css">
+  <link rel="stylesheet" href="../styles/paged.css">
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/detail.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header" role="banner">
+    <div class="container">
+      <div class="header-inner">
+        <a href="/" class="logo">
+          <span class="logo__mark">字</span>
+          <span class="logo__text">字境</span>
+        </a>
+        
+        <nav class="main-nav" role="navigation">
+          <ul class="nav-list">
+            <li><a href="/#fonts" class="nav-link">字体库</a></li>
+            <li><a href="/#features" class="nav-link">特性</a></li>
+            <li><a href="./about.html" class="nav-link">关于</a></li>
+          </ul>
+        </nav>
+        
+        <div class="header-actions">
+          <button class="btn btn-ghost btn-icon" id="theme-toggle" aria-label="切换主题">
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </button>
+          <button class="btn btn-primary" id="export-pdf">
+            导出 PDF
+          </button>
+        </div>
+        
+        <button class="menu-toggle btn btn-ghost btn-icon" aria-label="打开菜单">
+          <svg class="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="site-main" role="main">
+    <!-- Detail Header -->
+    <section class="detail-header">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="面包屑导航">
+          <ol>
+            <li><a href="/">首页</a></li>
+            <li><a href="/#fonts">字体库</a></li>
+            <li aria-current="page" id="breadcrumb-font-name">字体详情</li>
+          </ol>
+        </nav>
+
+        <div class="detail-header__content">
+          <div class="detail-header__info">
+            <div class="detail-header__meta" id="font-meta">
+              <!-- Dynamic content -->
+            </div>
+            <h1 class="detail-header__title" id="font-name">字体名称</h1>
+            <p class="detail-header__description" id="font-description">
+              字体描述内容
+            </p>
+            <div class="detail-header__actions">
+              <button class="btn btn-primary btn-lg" id="btn-download">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7 10 12 15 17 10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                下载字体
+              </button>
+              <button class="btn btn-secondary btn-lg" id="btn-preview">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+                在线预览
+              </button>
+            </div>
+          </div>
+
+          <div class="detail-header__preview">
+            <div class="preview-sample" id="preview-sample">
+              <span class="preview-sample__text">Aa</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Font Specimen -->
+    <section class="font-specimen section section-lg">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="text-display-md">字体样本</h2>
+          <p class="text-body">查看字体在不同尺寸和样式下的表现</p>
+        </header>
+
+        <div class="specimen-controls">
+          <div class="control-group">
+            <label for="specimen-text">预览文字</label>
+            <input type="text" id="specimen-text" class="control-input" value="天地玄黄，宇宙洪荒。日月盈昃，辰宿列张。">
+          </div>
+          <div class="control-group">
+            <label for="specimen-size">字号</label>
+            <input type="range" id="specimen-size" class="control-range" min="12" max="120" value="48">
+            <span class="control-value" id="specimen-size-value">48px</span>
+          </div>
+        </div>
+
+        <div class="specimen-display" id="specimen-display">
+          <!-- Dynamic content -->
+        </div>
+
+        <div class="specimen-weights">
+          <h3 class="specimen-weights__title">字重展示</h3>
+          <div class="weights-grid" id="weights-grid">
+            <!-- Dynamic content -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Font Info -->
+    <section class="font-info section section-lg">
+      <div class="container">
+        <div class="info-grid">
+          <div class="info-card">
+            <h3 class="info-card__title">字体信息</h3>
+            <dl class="info-list" id="font-info-list">
+              <!-- Dynamic content -->
+            </dl>
+          </div>
+
+          <div class="info-card">
+            <h3 class="info-card__title">字符支持</h3>
+            <div class="charset-preview" id="charset-preview">
+              <!-- Dynamic content -->
+            </div>
+          </div>
+
+          <div class="info-card info-card--full">
+            <h3 class="info-card__title">授权信息</h3>
+            <div class="license-info" id="license-info">
+              <!-- Dynamic content -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Fonts -->
+    <section class="related-fonts section section-lg">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="text-display-md">相关字体</h2>
+          <p class="text-body">您可能也会喜欢这些字体</p>
+        </header>
+
+        <div class="font-grid" id="related-fonts-grid">
+          <!-- Dynamic content -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="logo">
+            <span class="logo__mark">字</span>
+            <span class="logo__text">字境</span>
+          </a>
+          <p class="footer-tagline">探索字体的无限可能</p>
+        </div>
+        
+        <nav class="footer-nav" aria-label="页脚导航">
+          <div class="footer-nav__group">
+            <h4 class="footer-nav__title">浏览</h4>
+            <ul>
+              <li><a href="/#fonts">字体库</a></li>
+              <li><a href="/#features">特性</a></li>
+              <li><a href="./about.html">关于</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-nav__group">
+            <h4 class="footer-nav__title">资源</h4>
+            <ul>
+              <li><a href="#">使用指南</a></li>
+              <li><a href="#">授权说明</a></li>
+              <li><a href="#">API 文档</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      
+      <div class="footer-bottom">
+        <p class="copyright">
+          &copy; 2024 字境. 保留所有权利。
+        </p>
+        <div class="footer-links">
+          <a href="#">隐私政策</a>
+          <a href="#">使用条款</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Container -->
+  <div class="toast-container" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Scripts -->
+  <script type="module" src="../scripts/detail.js"></script>
+</body>
+</html>
