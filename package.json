@@ -1,0 +1,30 @@
+{
+  "name": "font-showcase-site",
+  "version": "1.0.0",
+  "description": "A sophisticated font showcase website based on paged.js architecture",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && npm run generate-pdf",
+    "preview": "vite preview",
+    "generate-pdf": "node src/scripts/generate-pdf.js",
+    "optimize-images": "node src/scripts/optimize-images.js"
+  },
+  "dependencies": {
+    "pagedjs": "^0.4.3"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "puppeteer": "^21.0.0",
+    "sharp": "^0.33.0"
+  },
+  "keywords": [
+    "fonts",
+    "typography",
+    "pagedjs",
+    "pdf",
+    "static-site"
+  ],
+  "author": "Font Showcase Team",
+  "license": "MIT"
+}

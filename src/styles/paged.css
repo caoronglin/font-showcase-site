@@ -1,0 +1,177 @@
+/* ============================================
+   Paged.js Styles - Font Showcase Site
+   ============================================ */
+
+/* ------------------------------------------
+   Paged.js Base Configuration
+   ------------------------------------------ */
+
+@page {
+  size: A4;
+  margin: var(--paged-margin-top) var(--paged-margin-right) var(--paged-margin-bottom) var(--paged-margin-left);
+  
+  @top-center {
+    content: string(document-title);
+    font-family: var(--font-display);
+    font-size: 9pt;
+    color: var(--ink-400);
+    letter-spacing: 0.05em;
+  }
+  
+  @bottom-center {
+    content: counter(page);
+    font-family: var(--font-display);
+    font-size: 9pt;
+    color: var(--ink-400);
+  }
+}
+
+@page :first {
+  @top-center {
+    content: none;
+  }
+  @bottom-center {
+    content: none;
+  }
+}
+
+/* ------------------------------------------
+   Page Break Utilities
+   ------------------------------------------ */
+
+.page-break-before {
+  break-before: page;
+}
+
+.page-break-after {
+  break-after: page;
+}
+
+.page-break-inside-avoid {
+  break-inside: avoid;
+}
+
+.avoid-break {
+  break-inside: avoid;
+}
+
+/* ------------------------------------------
+   Paged.js Specific Classes
+   ------------------------------------------ */
+
+.pagedjs_page {
+  background: white;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.pagedjs_pagebox {
+  position: relative;
+}
+
+.pagedjs_margin-top,
+.pagedjs_margin-bottom {
+  display: none;
+}
+
+/* Hide Paged.js UI elements */
+.pagedjs_pages {
+  display: block;
+}
+
+/* ------------------------------------------
+   Print-specific Adjustments
+   ------------------------------------------ */
+
+@media print {
+  /* Reset body for print */
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 11pt;
+  }
+  
+  /* Hide non-print elements */
+  .no-print,
+  nav,
+  .nav,
+  .sidebar,
+  .floating-actions,
+  .toast,
+  .modal-overlay {
+    display: none !important;
+  }
+  
+  /* Show print-only elements */
+  .print-only {
+    display: block !important;
+  }
+  
+  /* Ensure links show their URLs */
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: var(--ink-500);
+  }
+  
+  /* Avoid breaking inside important elements */
+  .card,
+  .font-card,
+  .table,
+  figure,
+  .chart {
+    break-inside: avoid;
+  }
+  
+  /* Ensure headings stay with content */
+  h1, h2, h3, h4, h5, h6 {
+    break-after: avoid;
+    orphans: 3;
+    widows: 3;
+  }
+  
+  p {
+    orphans: 2;
+    widows: 2;
+  }
+  
+  /* Page break utilities */
+  .page-break {
+    break-before: page;
+  }
+  
+  .page-break-after {
+    break-after: page;
+  }
+  
+  .avoid-page-break {
+    break-inside: avoid;
+  }
+}
+
+/* ------------------------------------------
+   Screen-specific Adjustments
+   ------------------------------------------ */
+
+@media screen {
+  /* Preview mode for paged content */
+  .paged-preview {
+    max-width: 210mm;
+    margin: 0 auto;
+    background: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: var(--paged-margin-top) var(--paged-margin-right) var(--paged-margin-bottom) var(--paged-margin-left);
+  }
+  
+  /* Page indicator */
+  .page-indicator {
+    position: fixed;
+    bottom: var(--space-4);
+    right: var(--space-4);
+    background: var(--ink-900);
+    color: white;
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-sm);
+    border-radius: 2px;
+    z-index: 100;
+  }
+}
