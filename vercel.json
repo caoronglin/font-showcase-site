@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "public": true,
+  "name": "font-showcase-site",
+  "buildCommand": null,
+  "outputDirectory": "dist",
+  "installCommand": "npm install",
+  "framework": null,
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/about",
+      "destination": "/pages/about.html"
+    },
+    {
+      "source": "/font/:id",
+      "destination": "/pages/detail.html"
+    }
+  ]
+}
