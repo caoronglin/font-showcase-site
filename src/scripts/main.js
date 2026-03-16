@@ -4,6 +4,10 @@
 
 import { fonts, getFeaturedFonts, searchFonts, categories } from './fonts-data.js';
 import { initCSSTooltips } from './css-tooltip.js';
+import { fontComparator } from './font-comparison.js';
+import { fontFavorites } from './font-favorites.js';
+import { previewEnhancer } from './preview-enhancer.js';
+import { initHeroCanvas } from './hero-canvas.js';
 
 // ============================================
 // State Management
@@ -46,6 +50,7 @@ function init() {
   initHeroCanvas();
   initScrollAnimations();
   initCSSTooltips();
+  previewEnhancer.setupEnhancedPreviews();
 }
 
 // ============================================
@@ -87,10 +92,12 @@ function renderFonts() {
   
   if (!elements.fontGrid) return;
   
+  elements.fontGrid.setAttribute('aria-busy', 'true');
+  
   if (paginatedFonts.length === 0) {
     elements.fontGrid.innerHTML = `
       <div class="empty-state">
-        <div class="empty-state__icon">
+        <div class="empty-state__icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="11" cy="11" r="8"/>
             <line x1="21" y1="21" x2="16.65" y2="16.65"/>
@@ -105,24 +112,36 @@ function renderFonts() {
     if (elements.loadMoreBtn) {
       elements.loadMoreBtn.style.display = 'none';
     }
+    elements.fontGrid.setAttribute('aria-busy', 'false');
     return;
   }
   
   elements.fontGrid.innerHTML = paginatedFonts.map(font => createFontCard(font)).join('');
   
+  elements.fontGrid.setAttribute('aria-busy', 'false');
+  elements.fontGrid.setAttribute('aria-label', `字体列表，显示 ${paginatedFonts.length} 个字体，共 ${filteredFonts.length} 个结果`);
+  
   // Add click listeners to font cards
   document.querySelectorAll('.font-card').forEach(card => {
     card.addEventListener('click', (e) => {
-      // 如果点击的是带 data-stop-propagation 的元素，阻止冒泡
       if (e.target.closest('[data-stop-propagation]')) {
         e.stopPropagation();
         return;
       }
-      
       const fontId = card.dataset.fontId;
       navigateToFontDetail(fontId);
     });
+    
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        const fontId = card.dataset.fontId;
+        navigateToFontDetail(fontId);
+      }
+    });
   });
+  
+  previewEnhancer.setupEnhancedPreviews();
   
   // Show/hide load more button
   if (elements.loadMoreBtn) {
@@ -132,13 +151,16 @@ function renderFonts() {
 }
 
 function createFontCard(font) {
+  const isInComparison = fontComparator.isInComparison(font.id);
+  const isFavorite = fontFavorites.isFavorite(font.id);
+  
   return `
-    <article class="font-card" data-font-id="${font.id}">
-      <div class="font-card__preview" style="font-family: '${font.nameEn}', sans-serif;">
+    <article class="font-card" data-font-id="${font.id}" role="article" tabindex="0" aria-labelledby="font-title-${font.id}">
+      <div class="font-card__preview" style="font-family: '${font.nameEn}', sans-serif;" aria-hidden="true">
         ${font.previewText}
       </div>
       <div class="font-card__info">
-        <h3 class="font-card__name">${font.name}</h3>
+        <h3 class="font-card__name" id="font-title-${font.id}">${font.name}</h3>
         <p class="font-card__meta">
           ${categories.find(c => c.id === font.category)?.name || font.category} · 
           ${font.weights.length} 字重 · 
@@ -148,19 +170,20 @@ function createFontCard(font) {
           ${font.tags.slice(0, 3).map(tag => `<span class="badge badge-secondary">${tag}</span>`).join('')}
         </div>
       </div>
-      <div class="font-card__actions">
-        <button class="btn btn-sm btn-ghost" data-action="preview" aria-label="预览字体" data-stop-propagation>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-            <circle cx="12" cy="12" r="3"/>
+      <div class="font-card__actions" role="group" aria-label="字体操作">
+        <button class="btn btn-sm btn-ghost" data-action="compare" aria-label="${isInComparison ? '从对比中移除' : '添加到对比'} ${font.name}" data-font-id="${font.id}" data-font-name="${font.name}" data-stop-propagation>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+            <line x1="12" y1="8" x2="12" y2="16"/>
+            <line x1="8" y1="12" x2="16" y2="12"/>
           </svg>
+          ${isInComparison ? '对比中' : '对比'}
         </button>
-        <button class="btn btn-sm btn-ghost" data-action="download" aria-label="下载字体" data-stop-propagation>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-            <polyline points="7 10 12 15 17 10"/>
-            <line x1="12" y1="15" x2="12" y2="3"/>
+        <button class="btn btn-sm ${isFavorite ? 'btn-accent' : 'btn-ghost'}" data-action="favorite" aria-label="${isFavorite ? '取消收藏' : '收藏'} ${font.name}" data-font-id="${font.id}" data-stop-propagation>
+          <svg viewBox="0 0 24 24" fill="${isFavorite ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
           </svg>
+          ${isFavorite ? '已收藏' : '收藏'}
         </button>
       </div>
     </article>
@@ -238,7 +261,6 @@ function setupEventListeners() {
   if (elements.exportPdfBtn) {
     elements.exportPdfBtn.addEventListener('click', () => {
       showToast('正在生成 PDF...');
-      // Paged.js will handle the PDF generation
       if (window.PagedPolyfill) {
         window.PagedPolyfill.preview();
       }
@@ -254,12 +276,64 @@ function setupEventListeners() {
     });
   }
   
+  const favoritesToggle = document.getElementById('favorites-toggle');
+  if (favoritesToggle) {
+    favoritesToggle.addEventListener('click', () => {
+      fontFavorites.open();
+    });
+  }
+  
+  window.addEventListener('showToast', (e) => {
+    const { message, type } = e.detail;
+    showToast(message, type);
+  });
+  
+  document.addEventListener('click', (e) => {
+    const compareBtn = e.target.closest('[data-action="compare"]');
+    const favoriteBtn = e.target.closest('[data-action="favorite"]');
+    
+    if (compareBtn) {
+      e.preventDefault();
+      e.stopPropagation();
+      const fontId = compareBtn.dataset.fontId;
+      const fontName = compareBtn.dataset.fontName;
+      const font = fonts.find(f => f.id === fontId);
+      if (font) {
+        fontComparator.toggleFont(font);
+        renderFonts();
+      }
+    }
+    
+    if (favoriteBtn) {
+      e.preventDefault();
+      e.stopPropagation();
+      const fontId = favoriteBtn.dataset.fontId;
+      const font = fonts.find(f => f.id === fontId);
+      if (font) {
+        fontFavorites.toggleFavorite(font);
+        renderFonts();
+      }
+    }
+  });
+  
   // Mobile menu toggle
   if (elements.menuToggle) {
     elements.menuToggle.addEventListener('click', () => {
       const isExpanded = elements.menuToggle.getAttribute('aria-expanded') === 'true';
       elements.menuToggle.setAttribute('aria-expanded', !isExpanded);
       elements.mobileMenu.classList.toggle('is-open');
+    });
+    
+    // Close mobile menu on ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const isExpanded = elements.menuToggle.getAttribute('aria-expanded') === 'true';
+        if (isExpanded) {
+          elements.menuToggle.setAttribute('aria-expanded', 'false');
+          elements.mobileMenu.classList.remove('is-open');
+          elements.menuToggle.focus();
+        }
+      }
     });
   }
   
@@ -309,115 +383,8 @@ function showToast(message, type = 'info') {
 }
 
 // ============================================
-// Hero Canvas Animation
+// Toast Notifications
 // ============================================
-
-function initHeroCanvas() {
-  const canvas = document.getElementById('hero-canvas');
-  if (!canvas) return;
-  
-  const ctx = canvas.getContext('2d');
-  let animationId;
-  let particles = [];
-  
-  function resize() {
-    canvas.width = canvas.offsetWidth * window.devicePixelRatio;
-    canvas.height = canvas.offsetHeight * window.devicePixelRatio;
-    ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-  }
-  
-  function createParticles() {
-    particles = [];
-    const count = Math.min(30, Math.floor(canvas.offsetWidth / 40));
-    
-    for (let i = 0; i < count; i++) {
-      particles.push({
-        x: Math.random() * canvas.offsetWidth,
-        y: Math.random() * canvas.offsetHeight,
-        size: Math.random() * 3 + 1,
-        speedX: (Math.random() - 0.5) * 0.5,
-        speedY: (Math.random() - 0.5) * 0.5,
-        opacity: Math.random() * 0.5 + 0.2
-      });
-    }
-  }
-  
-  function draw() {
-    ctx.clearRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
-    
-    // Draw connections
-    ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--ink-200').trim();
-    ctx.lineWidth = 0.5;
-    
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        
-        if (distance < 150) {
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.globalAlpha = (1 - distance / 150) * 0.3;
-          ctx.stroke();
-          ctx.globalAlpha = 1;
-        }
-      }
-    }
-    
-    // Draw particles
-    for (const particle of particles) {
-      ctx.beginPath();
-      ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-      ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--ink-400').trim();
-      ctx.globalAlpha = particle.opacity;
-      ctx.fill();
-      ctx.globalAlpha = 1;
-      
-      // Update position
-      particle.x += particle.speedX;
-      particle.y += particle.speedY;
-      
-      // Wrap around
-      if (particle.x < 0) particle.x = canvas.offsetWidth;
-      if (particle.x > canvas.offsetWidth) particle.x = 0;
-      if (particle.y < 0) particle.y = canvas.offsetHeight;
-      if (particle.y > canvas.offsetHeight) particle.y = 0;
-    }
-    
-    animationId = requestAnimationFrame(draw);
-  }
-  
-  function start() {
-    resize();
-    createParticles();
-    draw();
-  }
-  
-  function stop() {
-    if (animationId) {
-      cancelAnimationFrame(animationId);
-    }
-  }
-  
-  // Handle resize
-  window.addEventListener('resize', () => {
-    stop();
-    start();
-  });
-  
-  // Visibility API - pause when tab is hidden
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      stop();
-    } else {
-      start();
-    }
-  });
-  
-  start();
-}
 
 // ============================================
 // Scroll Animations

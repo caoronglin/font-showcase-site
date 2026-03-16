@@ -37,13 +37,15 @@
   --indigo-light: #5a7d52;
   --indigo-dark: #3a5131;
   
-  /* Dark Mode - Night Reading */
-  --night-bg: #0f1419;
-  --night-surface: #1a1f2e;
-  --night-elevated: #252b3b;
-  --night-text: #e6e6e6;
-  --night-muted: #8b949e;
+  /* Dark Mode - Night Reading - Enhanced Contrast */
+  --night-bg: #0a0a0a;
+  --night-surface: #151515;
+  --night-elevated: #1f1f1f;
+  --night-text: #f5f5f5;
+  --night-text-secondary: #a3a3a3;
+  --night-muted: #737373;
   --night-accent: #f59e0b;  /* 琥珀 */
+  --night-accent-hover: #fbbf24;
   
   /* ------------------------------------------
      Typography System
@@ -153,12 +155,39 @@
   --transition-slow: 350ms ease;
   --transition-slower: 500ms ease;
   
-  /* Easing functions */
+  /* Duration tokens */
+  --duration-instant: 75ms;
+  --duration-snappy: 120ms;
+  --duration-moderate: 200ms;
+  --duration-gentle: 300ms;
+  --duration-leisurely: 450ms;
+  --duration-relaxed: 600ms;
+  --duration-epic: 1000ms;
+  
+  /* Easing functions - Advanced */
   --ease-linear: linear;
   --ease-in: cubic-bezier(0.4, 0, 1, 1);
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  /* Premium easing curves */
+  --ease-smooth: cubic-bezier(0.4, 0.0, 0.2, 1);
+  --ease-swift: cubic-bezier(0.2, 0.0, 0, 1);
+  --ease-bouncy: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+  --ease-elastic: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+  --ease-gentle: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-dramatic: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-natural: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  /* Specialized transitions */
+  --transition-smooth: var(--duration-moderate) var(--ease-smooth);
+  --transition-swift: var(--duration-snappy) var(--ease-swift);
+  --transition-bouncy: var(--duration-gentle) var(--ease-bouncy);
+  --transition-spring: var(--duration-moderate) var(--ease-spring);
+  --transition-dramatic: var(--duration-leisurely) var(--ease-dramatic);
+  --transition-elastic: var(--duration-relaxed) var(--ease-elastic);
   
   /* ------------------------------------------
      Paged.js Specific
@@ -170,23 +199,31 @@
   --paged-bleed: 3mm;
 }
 
-/* Dark mode variables */
+/* Dark mode variables - Enhanced contrast for WCAG AA compliance (4.5:1 minimum) */
 @media (prefers-color-scheme: dark) {
   :root {
+    /* Higher contrast ink scale for better readability */
     --ink-900: #ffffff;
-    --ink-800: #e6e6e6;
-    --ink-700: #b3b3b3;
-    --ink-600: #808080;
-    --ink-500: #666666;
-    --ink-400: #4d4d4d;
-    --ink-300: #333333;
-    --ink-200: #1a1a1a;
-    --ink-100: #0d0d0d;
+    --ink-800: #f5f5f5;
+    --ink-700: #d9d9d9;
+    --ink-600: #adadad;
+    --ink-500: #7a7a7a;
+    --ink-400: #575757;
+    --ink-300: #404040;
+    --ink-200: #292929;
+    --ink-100: #171717;
     
-    --paper-50: #0f1419;
-    --paper-100: #1a1f2e;
-    --paper-200: #252b3b;
-    --paper-300: #303648;
+    /* Richer paper tones with better depth */
+    --paper-50: #0a0a0a;
+    --paper-100: #121212;
+    --paper-200: #1a1a1a;
+    --paper-300: #262626;
+    
+    /* Enhanced accent colors for better visibility */
+    --cinnabar-light: #ff7b6b;
+    --bronze-light: #dda15e;
+    --indigo-light: #7ab380;
+    --night-accent: #fbbf24;
   }
 }
 
@@ -197,5 +234,278 @@
     --transition-base: 0.01ms;
     --transition-slow: 0.01ms;
     --transition-slower: 0.01ms;
+  }
+}
+
+/* ------------------------------------------
+   Animation Keyframes
+   ------------------------------------------ */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes fadeOutUp {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+}
+
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+@keyframes rotateIn {
+  from {
+    opacity: 0;
+    transform: rotate(-10deg) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes pulseSoft {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(231, 76, 60, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(231, 76, 60, 0.6), 0 0 60px rgba(231, 76, 60, 0.3);
+  }
+}
+
+@keyframes glowSoft {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@keyframes shimmerIn {
+  0% {
+    opacity: 0;
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes revealUp {
+  0% {
+    clip-path: inset(100% 0 0 0);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes revealDown {
+  0% {
+    clip-path: inset(0 0 100% 0);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes revealLeft {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes revealRight {
+  0% {
+    clip-path: inset(0 0 0 100%);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
   }
 }

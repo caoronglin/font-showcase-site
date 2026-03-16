@@ -27,11 +27,15 @@
   <link rel="stylesheet" href="./styles/css-tooltip.css">
   <link rel="stylesheet" href="./styles/paged.css">
   <link rel="stylesheet" href="./styles/main.css">
+  <link rel="stylesheet" href="./styles/interaction.css">
   
   <!-- Paged.js for PDF generation -->
   <script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js" defer></script>
 </head>
 <body>
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">跳转到主要内容</a>
+  
   <!-- Header -->
   <header class="site-header" role="banner">
     <div class="container">
@@ -54,10 +58,10 @@
         <!-- Actions -->
         <div class="header-actions">
           <button class="btn btn-ghost btn-icon" id="theme-toggle" aria-label="切换主题">
-            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
             </svg>
-            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <circle cx="12" cy="12" r="5"></circle>
               <line x1="12" y1="1" x2="12" y2="3"></line>
               <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -69,29 +73,35 @@
               <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
             </svg>
           </button>
+          <button class="btn btn-ghost btn-icon favorites-button" id="favorites-toggle" aria-label="查看收藏字体">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+            <span class="favorites-badge">0</span>
+          </button>
           <button class="btn btn-primary" id="export-pdf">
             导出 PDF
           </button>
         </div>
         
         <!-- Mobile Menu Toggle -->
-        <button class="menu-toggle btn btn-ghost btn-icon" aria-label="打开菜单" aria-expanded="false">
-          <svg class="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-          </svg>
-          <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
+          <button class="menu-toggle btn btn-ghost btn-icon" aria-label="打开菜单" aria-expanded="false">
+            <svg class="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+            <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
       </div>
     </div>
   </header>
 
   <!-- Main Content -->
-  <main class="site-main" role="main">
+  <main class="site-main" id="main-content" role="main" tabindex="-1">
     <!-- Hero Section -->
     <section class="hero" id="hero">
       <div class="hero__background">
@@ -113,7 +123,7 @@
           <div class="hero__actions">
             <a href="#fonts" class="btn btn-primary btn-lg">
               浏览字体库
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
@@ -167,8 +177,9 @@
               class="search-input" 
               placeholder="搜索字体..." 
               aria-label="搜索字体"
+              aria-controls="font-grid"
             >
-            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
@@ -176,7 +187,7 @@
         </div>
 
         <!-- Font Grid -->
-        <div class="font-grid" id="font-grid">
+        <div class="font-grid" id="font-grid" role="region" aria-label="字体列表" aria-live="polite" aria-busy="false">
           <!-- Font cards will be dynamically inserted here -->
         </div>
 
@@ -199,7 +210,7 @@
 
         <div class="features-grid">
           <div class="feature-card">
-            <div class="feature-card__icon">
+            <div class="feature-card__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
               </svg>
@@ -211,7 +222,7 @@
           </div>
 
           <div class="feature-card">
-            <div class="feature-card__icon">
+            <div class="feature-card__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="12" cy="12" r="10"/>
                 <path d="M12 6v6l4 2"/>
@@ -224,7 +235,7 @@
           </div>
 
           <div class="feature-card">
-            <div class="feature-card__icon">
+            <div class="feature-card__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                 <polyline points="14 2 14 8 20 8"/>
@@ -240,7 +251,7 @@
           </div>
 
           <div class="feature-card">
-            <div class="feature-card__icon">
+            <div class="feature-card__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
               </svg>
@@ -327,5 +338,8 @@
   <script type="module" src="./scripts/main.js"></script>
   <script type="module" src="./scripts/fonts-data.js"></script>
   <script type="module" src="./scripts/hero-canvas.js"></script>
+  <script type="module" src="./scripts/font-comparison.js"></script>
+  <script type="module" src="./scripts/font-favorites.js"></script>
+  <script type="module" src="./scripts/preview-enhancer.js"></script>
 </body>
 </html>
