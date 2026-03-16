@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && npm run generate-pdf",
+    "build": "vite build",
     "preview": "vite preview",
     "generate-pdf": "node src/scripts/generate-pdf.js",
-    "optimize-images": "node src/scripts/optimize-images.js"
+    "optimize-images": "node src/scripts/optimize-images.js",
+    "prepare-fonts": "node src/scripts/prepare-fonts.js"
   },
   "dependencies": {
     "pagedjs": "^0.4.3"

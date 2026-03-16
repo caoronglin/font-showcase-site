@@ -1,176 +1,327 @@
 /* ============================================
    CSS Tooltip Styles - Font Showcase Site
+   Enhanced with better visuals, animations, and mobile support
    ============================================ */
 
 /* ------------------------------------------
-   CSS Tooltip
+   CSS Tooltip Base
    ------------------------------------------ */
 
 .css-tooltip {
   position: absolute;
   z-index: 1000;
-  min-width: 320px;
-  max-width: 480px;
+  min-width: 340px;
+  max-width: 520px;
   background: white;
-  border-radius: 8px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 
+    0 25px 80px rgba(0, 0, 0, 0.16),
+    0 8px 24px rgba(0, 0, 0, 0.12),
+    0 2px 8px rgba(0, 0, 0, 0.08);
   font-family: var(--font-body);
   font-size: 14px;
   line-height: 1.6;
   color: var(--ink-800);
   opacity: 0;
-  transform: translateY(-10px);
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transform: translateY(-8px) scale(0.98);
+  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: none;
+  overflow: hidden;
+  border: 1px solid var(--ink-100);
 }
 
 .css-tooltip--active {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
   pointer-events: auto;
 }
 
 .css-tooltip--closing {
   opacity: 0;
-  transform: translateY(-10px);
+  transform: translateY(-8px) scale(0.98);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+/* Tooltip Top Border Accent */
+.css-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    var(--indigo, #4a6741) 0%, 
+    var(--accent, #6366f1) 50%, 
+    var(--indigo, #4a6741) 100%);
 }
 
 /* Tooltip Arrow */
-.css-tooltip::before {
-  content: '';
+.css-tooltip__arrow {
   position: absolute;
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
   background: white;
   transform: rotate(45deg);
-  box-shadow: -2px -2px 4px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--ink-100);
+  z-index: -1;
 }
 
-.css-tooltip[data-position="top"]::before {
-  bottom: -6px;
+.css-tooltip[data-position="top"] .css-tooltip__arrow {
+  bottom: -8px;
   left: 50%;
-  margin-left: -6px;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+  margin-left: -7px;
+  border-top: none;
+  border-left: none;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.08);
 }
 
-.css-tooltip[data-position="bottom"]::before {
-  top: -6px;
+.css-tooltip[data-position="bottom"] .css-tooltip__arrow {
+  top: -8px;
   left: 50%;
-  margin-left: -6px;
+  margin-left: -7px;
+  border-bottom: none;
+  border-right: none;
 }
 
 /* Tooltip Header */
 .css-tooltip__title {
-  padding: 16px 20px;
+  padding: 18px 24px;
   font-size: 16px;
   font-weight: 600;
   color: var(--ink-900);
   border-bottom: 1px solid var(--ink-100);
+  background: linear-gradient(to bottom, var(--ink-50), white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.css-tooltip__title-text {
+  flex: 1;
 }
 
 /* Tooltip Content */
 .css-tooltip__content {
-  padding: 16px 20px;
-  max-height: 400px;
+  padding: 20px 24px;
+  max-height: 480px;
   overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ink-300) transparent;
+}
+
+.css-tooltip__content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.css-tooltip__content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.css-tooltip__content::-webkit-scrollbar-thumb {
+  background: var(--ink-300);
+  border-radius: 3px;
+}
+
+.css-tooltip__content::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-400);
 }
 
 /* Tooltip Section */
 .css-tooltip__section {
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px dashed var(--ink-150);
 }
 
 .css-tooltip__section:last-child {
   margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
 }
 
 .css-tooltip__label {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--ink-600);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink-500);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 8px;
+  letter-spacing: 0.8px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.css-tooltip__label::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: var(--indigo, #4a6741);
+  border-radius: 2px;
+  display: inline-block;
 }
 
 /* Code Blocks */
-.css-tooltip code,
-.css-tooltip pre {
+.css-tooltip__code,
+.css-tooltip__pre {
   font-family: var(--font-mono);
   font-size: 13px;
-  line-height: 1.5;
-  background: var(--paper-100);
-  border-radius: 4px;
-  padding: 12px;
+  line-height: 1.6;
+  background: linear-gradient(135deg, var(--paper-100) 0%, var(--paper-50) 100%);
+  border-radius: 8px;
+  padding: 16px;
   display: block;
   overflow-x: auto;
   white-space: pre-wrap;
   word-break: break-all;
   color: var(--ink-800);
   border: 1px solid var(--ink-200);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03);
+  position: relative;
 }
 
-.css-tooltip code {
-  padding: 2px 6px;
-  display: inline;
-  white-space: nowrap;
+.css-tooltip__code {
+  padding: 10px 14px;
+  display: block;
+  white-space: pre-wrap;
+  word-break: break-word;
+  background: var(--paper-100);
+}
+
+.css-tooltip__code:hover,
+.css-tooltip__pre:hover {
+  border-color: var(--ink-300);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 /* Copy Button */
 .css-tooltip__copy-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  margin-top: 8px;
-  padding: 6px 12px;
-  font-size: 12px;
-  font-weight: 500;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 10px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
   color: var(--ink-700);
   background: white;
   border: 1px solid var(--ink-300);
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.css-tooltip__copy-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+  transition: left 0.5s ease;
 }
 
 .css-tooltip__copy-btn:hover {
   background: var(--paper-100);
   border-color: var(--ink-400);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.css-tooltip__copy-btn:hover::before {
+  left: 100%;
+}
+
+.css-tooltip__copy-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .css-tooltip__copy-btn svg {
-  width: 14px;
-  height: 14px;
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
 }
 
-.css-tooltip__copy-btn--success {
-  color: var(--indigo);
-  border-color: var(--indigo);
-  background: rgba(74, 103, 65, 0.1);
+.css-tooltip__copy-btn span {
+  white-space: nowrap;
+}
+
+/* Copy Success State */
+.css-tooltip__copy-btn.copied {
+  color: white;
+  border-color: var(--indigo, #4a6741);
+  background: linear-gradient(135deg, var(--indigo, #4a6741) 0%, #5a7d4a 100%);
+  box-shadow: 0 4px 12px rgba(74, 103, 65, 0.35);
+  animation: copySuccess 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes copySuccess {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.css-tooltip__copy-btn.copied svg {
+  animation: checkmark 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.1s both;
+}
+
+@keyframes checkmark {
+  0% {
+    stroke-dasharray: 0 24;
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dasharray: 24 0;
+    stroke-dashoffset: 0;
+  }
 }
 
 /* Close Button */
 .css-tooltip__close {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 14px;
+  right: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   padding: 0;
-  color: var(--ink-500);
-  background: transparent;
-  border: none;
-  border-radius: 4px;
+  color: var(--ink-400);
+  background: white;
+  border: 1px solid var(--ink-200);
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  z-index: 10;
 }
 
 .css-tooltip__close:hover {
-  color: var(--ink-800);
-  background: var(--paper-200);
+  color: var(--ink-700);
+  background: var(--ink-50);
+  border-color: var(--ink-300);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+  transform: rotate(90deg);
+}
+
+.css-tooltip__close:active {
+  transform: rotate(90deg) scale(0.95);
 }
 
 .css-tooltip__close svg {
@@ -178,27 +329,129 @@
   height: 18px;
 }
 
+/* Font Preview Section */
+.css-tooltip__preview {
+  margin-top: 16px;
+  padding: 16px;
+  background: linear-gradient(135deg, var(--paper-50) 0%, var(--paper-100) 100%);
+  border-radius: 8px;
+  border: 1px solid var(--ink-150);
+}
+
+.css-tooltip__preview-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink-500);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 12px;
+}
+
+.css-tooltip__preview-text {
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--ink-800);
+  margin-bottom: 8px;
+}
+
+.css-tooltip__preview-subtext {
+  font-size: 14px;
+  color: var(--ink-500);
+}
+
+/* Path Badge */
+.css-tooltip__path {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--ink-600);
+  background: var(--paper-100);
+  border-radius: 4px;
+  border: 1px solid var(--ink-200);
+  margin-top: 8px;
+}
+
+.css-tooltip__path svg {
+  width: 12px;
+  height: 12px;
+  opacity: 0.6;
+}
+
+/* Tab Navigation */
+.css-tooltip__tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--ink-150);
+}
+
+.css-tooltip__tab {
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-500);
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.css-tooltip__tab:hover {
+  color: var(--ink-700);
+  background: var(--paper-100);
+}
+
+.css-tooltip__tab--active {
+  color: var(--indigo, #4a6741);
+  background: rgba(74, 103, 65, 0.08);
+  font-weight: 600;
+}
+
 /* Dark Mode */
 .dark .css-tooltip {
   background: var(--night-surface);
   color: var(--night-text);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 
+    0 25px 80px rgba(0, 0, 0, 0.5),
+    0 8px 24px rgba(0, 0, 0, 0.4),
+    0 2px 8px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
-.dark .css-tooltip::before {
+.dark .css-tooltip::after {
+  background: linear-gradient(90deg, 
+    rgba(99, 102, 241, 0.8) 0%, 
+    rgba(99, 102, 241, 1) 50%, 
+    rgba(99, 102, 241, 0.8) 100%);
+}
+
+.dark .css-tooltip__arrow {
   background: var(--night-surface);
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
 .dark .css-tooltip__title {
   color: var(--night-text);
+  border-color: rgba(255, 255, 255, 0.08);
+  background: linear-gradient(to bottom, rgba(255,255,255,0.03), var(--night-surface));
+}
+
+.dark .css-tooltip__code,
+.dark .css-tooltip__pre {
+  background: linear-gradient(135deg, var(--night-elevated) 0%, rgba(255,255,255,0.02) 100%);
+  color: var(--night-text);
   border-color: rgba(255, 255, 255, 0.1);
 }
 
-.dark .css-tooltip code,
-.dark .css-tooltip pre {
-  background: var(--night-elevated);
-  color: var(--night-text);
-  border-color: rgba(255, 255, 255, 0.1);
+.dark .css-tooltip__code:hover,
+.dark .css-tooltip__pre:hover {
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 .dark .css-tooltip__label {
@@ -208,46 +461,136 @@
 .dark .css-tooltip__copy-btn {
   color: var(--night-text);
   background: var(--night-elevated);
-  border-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .dark .css-tooltip__copy-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.dark .css-tooltip__copy-btn.copied {
+  background: linear-gradient(135deg, #6366f1 0%, #818cf8 100%);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
 }
 
 .dark .css-tooltip__close {
   color: var(--night-muted);
+  background: var(--night-elevated);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 .dark .css-tooltip__close:hover {
   color: var(--night-text);
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Responsive */
-@media (max-width: 640px) {
+.dark .css-tooltip__preview {
+  background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, var(--night-elevated) 100%);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.dark .css-tooltip__path {
+  color: var(--night-muted);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
   .css-tooltip {
-    min-width: 280px;
-    max-width: calc(100vw - 32px);
+    min-width: calc(100vw - 24px);
+    max-width: calc(100vw - 24px);
+    margin: 12px;
+  }
+  
+  .css-tooltip__title {
+    padding: 14px 16px;
+    font-size: 15px;
   }
   
   .css-tooltip__content {
-    padding: 12px 16px;
+    padding: 16px;
+    max-height: 60vh;
+  }
+  
+  .css-tooltip__section {
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .css-tooltip__code,
+  .css-tooltip__pre {
+    padding: 12px;
+    font-size: 12px;
+  }
+  
+  .css-tooltip__preview-text {
+    font-size: 22px;
   }
 }
 
-/* Animation */
+/* Responsive - Small Mobile */
+@media (max-width: 480px) {
+  .css-tooltip {
+    min-width: calc(100vw - 16px);
+    max-width: calc(100vw - 16px);
+    margin: 8px;
+    font-size: 13px;
+  }
+  
+  .css-tooltip__tabs {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  
+  .css-tooltip__tabs::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .css-tooltip__tab {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  
+  .css-tooltip__preview-text {
+    font-size: 18px;
+  }
+}
+
+/* Animation - Fade In */
 @keyframes tooltipFadeIn {
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-8px) scale(0.98);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
 .css-tooltip--animate {
-  animation: tooltipFadeIn 0.2s ease;
+  animation: tooltipFadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Animation - Pulse for copied state */
+@keyframes tooltipPulse {
+  0%, 100% {
+    box-shadow: 
+      0 25px 80px rgba(0, 0, 0, 0.16),
+      0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+  50% {
+    box-shadow: 
+      0 25px 80px rgba(74, 103, 65, 0.25),
+      0 8px 24px rgba(74, 103, 65, 0.2);
+  }
+}
+
+.css-tooltip--copied {
+  animation: tooltipPulse 1.5s ease-in-out;
 }

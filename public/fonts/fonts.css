@@ -1,0 +1,289 @@
+/**
+ * Font Showcase - Web Fonts Configuration
+ * All fonts are licensed for free commercial use
+ * 
+ * Fonts included:
+ * - HarmonyOS Sans SC (华为鸿蒙字体)
+ * - HONOR Sans CN (荣耀字体)
+ * - JetBrains Mono (编程字体)
+ * - Noto Sans SC (思源黑体)
+ */
+
+/* ============================================
+   CSS Custom Properties for Font Families
+   ============================================ */
+:root {
+  --font-harmonyos: 'HarmonyOS Sans SC', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-honor: 'HONOR Sans CN', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-jetbrains: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Source Code Pro', monospace;
+  --font-noto: 'Noto Sans SC', 'Source Han Sans SC', 'Microsoft YaHei', sans-serif;
+}
+
+/* ============================================
+   HarmonyOS Sans SC - 华为鸿蒙字体
+   Source: Huawei Developer
+   License: Free for commercial use
+   ============================================ */
+@font-face {
+  font-family: 'HarmonyOS Sans SC';
+  font-weight: 100;
+  font-display: swap;
+  src: url('/fonts/harmonyos-sans-sc/HarmonyOS_Sans_SC_Thin.woff2') format('woff2');
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FADFF, U+2F800-2FA1F;
+}
+
+@font-face {
+  font-family: 'HarmonyOS Sans SC';
+  font-weight: 300;
+  font-display: swap;
+  src: url('/fonts/harmonyos-sans-sc/HarmonyOS_Sans_SC_Light.woff2') format('woff2');
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FADFF, U+2F800-2FA1F;
+}
+
+@font-face {
+  font-family: 'HarmonyOS Sans SC';
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/harmonyos-sans-sc/HarmonyOS_Sans_SC_Regular.woff2') format('woff2');
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FADFF, U+2F800-2FA1F;
+}
+
+@font-face {
+  font-family: 'HarmonyOS Sans SC';
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/harmonyos-sans-sc/HarmonyOS_Sans_SC_Medium.woff2') format('woff2');
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FADFF, U+2F800-2FA1F;
+}
+
+@font-face {
+  font-family: 'HarmonyOS Sans SC';
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/harmonyos-sans-sc/HarmonyOS_Sans_SC_Bold.woff2') format('woff2');
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FADFF, U+2F800-2FA1F;
+}
+
+@font-face {
+  font-family: 'HarmonyOS Sans SC';
+  font-weight: 900;
+  font-display: swap;
+  src: url('/fonts/harmonyos-sans-sc/HarmonyOS_Sans_SC_Black.woff2') format('woff2');
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FADFF, U+2F800-2FA1F;
+}
+
+/* ============================================
+   HONOR Sans CN - 荣耀字体
+   Source: Honor Developer
+   License: Free for commercial use
+   ============================================ */
+@font-face {
+  font-family: 'HONOR Sans CN';
+  font-weight: 100;
+  font-display: swap;
+  src: url('/fonts/honor-sans-cn/HONOR_Sans_CN_Thin.woff2') format('woff2');
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FADFF, U+2F800-2FA1F;
+}
+
+@font-face {
+  font-family: 'HONOR Sans CN';
+  font-weight: 300;
+  font-display: swap;
+  src: url('/fonts/honor-sans-cn/HONOR_Sans_CN_Light.woff2') format('woff2');
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FADFF, U+2F800-2FA1F;
+}
+
+@font-face {
+  font-family: 'HONOR Sans CN';
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/honor-sans-cn/HONOR_Sans_CN_Regular.woff2') format('woff2');
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FADFF, U+2F800-2FA1F;
+}
+
+@font-face {
+  font-family: 'HONOR Sans CN';
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/honor-sans-cn/HONOR_Sans_CN_Medium.woff2') format('woff2');
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FADFF, U+2F800-2FA1F;
+}
+
+@font-face {
+  font-family: 'HONOR Sans CN';
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/honor-sans-cn/HONOR_Sans_CN_Bold.woff2') format('woff2');
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FADFF, U+2F800-2FA1F;
+}
+
+@font-face {
+  font-family: 'HONOR Sans CN';
+  font-weight: 900;
+  font-display: swap;
+  src: url('/fonts/honor-sans-cn/HONOR_Sans_CN_Black.woff2') format('woff2');
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FADFF, U+2F800-2FA1F;
+}
+
+/* ============================================
+   JetBrains Mono - 编程字体
+   Source: JetBrains
+   License: OFL-1.1 (Free for commercial use)
+   ============================================ */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-weight: 100;
+  font-display: swap;
+  src: url('/fonts/jetbrains-mono/JetBrainsMono-Thin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-weight: 200;
+  font-display: swap;
+  src: url('/fonts/jetbrains-mono/JetBrainsMono-ExtraLight.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-weight: 300;
+  font-display: swap;
+  src: url('/fonts/jetbrains-mono/JetBrainsMono-Light.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/jetbrains-mono/JetBrainsMono-Regular.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/jetbrains-mono/JetBrainsMono-Medium.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/jetbrains-mono/JetBrainsMono-SemiBold.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/jetbrains-mono/JetBrainsMono-Bold.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-weight: 800;
+  font-display: swap;
+  src: url('/fonts/jetbrains-mono/JetBrainsMono-ExtraBold.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ============================================
+   Noto Sans SC - 思源黑体
+   Source: Google Fonts
+   License: OFL-1.1 (Free for commercial use)
+   CDN Fallback: https://fonts.googleapis.com/css2?family=Noto+Sans+SC
+   ============================================ */
+@font-face {
+  font-family: 'Noto Sans SC';
+  font-weight: 100;
+  font-display: swap;
+  src: url('/fonts/noto-sans-sc/NotoSansSC-Thin.woff2') format('woff2');
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FADFF, U+2F800-2FA1F;
+}
+
+@font-face {
+  font-family: 'Noto Sans SC';
+  font-weight: 300;
+  font-display: swap;
+  src: url('/fonts/noto-sans-sc/NotoSansSC-Light.woff2') format('woff2');
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FADFF, U+2F800-2FA1F;
+}
+
+@font-face {
+  font-family: 'Noto Sans SC';
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/noto-sans-sc/NotoSansSC-Regular.woff2') format('woff2');
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FADFF, U+2F800-2FA1F;
+}
+
+@font-face {
+  font-family: 'Noto Sans SC';
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/noto-sans-sc/NotoSansSC-Medium.woff2') format('woff2');
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FADFF, U+2F800-2FA1F;
+}
+
+@font-face {
+  font-family: 'Noto Sans SC';
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/noto-sans-sc/NotoSansSC-Bold.woff2') format('woff2');
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FADFF, U+2F800-2FA1F;
+}
+
+@font-face {
+  font-family: 'Noto Sans SC';
+  font-weight: 900;
+  font-display: swap;
+  src: url('/fonts/noto-sans-sc/NotoSansSC-Black.woff2') format('woff2');
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FADFF, U+2F800-2FA1F;
+}
+
+/* ============================================
+   CDN Fallback Styles
+   Include this <link> in HTML <head> as fallback:
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap" media="print" onload="this.media='all'">
+   ============================================ */
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+.font-harmonyos {
+  font-family: var(--font-harmonyos);
+}
+
+.font-honor {
+  font-family: var(--font-honor);
+}
+
+.font-jetbrains {
+  font-family: var(--font-jetbrains);
+}
+
+.font-noto {
+  font-family: var(--font-noto);
+}
+
+/* ============================================
+   Font Loading Status (Optional JS Enhancement)
+   ============================================ */
+html:not(.fonts-loaded) {
+  visibility: hidden;
+}
+
+html.fonts-loaded {
+  visibility: visible;
+}
+
+html.fonts-loading {
+  visibility: visible;
+}

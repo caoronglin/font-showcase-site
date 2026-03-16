@@ -3,6 +3,7 @@
  */
 
 import { fonts, getFeaturedFonts, searchFonts, categories } from './fonts-data.js';
+import { initCSSTooltips } from './css-tooltip.js';
 
 // ============================================
 // State Management
@@ -44,6 +45,7 @@ function init() {
   renderFonts();
   initHeroCanvas();
   initScrollAnimations();
+  initCSSTooltips();
 }
 
 // ============================================
@@ -110,7 +112,13 @@ function renderFonts() {
   
   // Add click listeners to font cards
   document.querySelectorAll('.font-card').forEach(card => {
-    card.addEventListener('click', () => {
+    card.addEventListener('click', (e) => {
+      // 如果点击的是带 data-stop-propagation 的元素，阻止冒泡
+      if (e.target.closest('[data-stop-propagation]')) {
+        e.stopPropagation();
+        return;
+      }
+      
       const fontId = card.dataset.fontId;
       navigateToFontDetail(fontId);
     });
@@ -141,13 +149,13 @@ function createFontCard(font) {
         </div>
       </div>
       <div class="font-card__actions">
-        <button class="btn btn-sm btn-ghost" data-action="preview" aria-label="预览字体">
+        <button class="btn btn-sm btn-ghost" data-action="preview" aria-label="预览字体" data-stop-propagation>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
             <circle cx="12" cy="12" r="3"/>
           </svg>
         </button>
-        <button class="btn btn-sm btn-ghost" data-action="download" aria-label="下载字体">
+        <button class="btn btn-sm btn-ghost" data-action="download" aria-label="下载字体" data-stop-propagation>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
             <polyline points="7 10 12 15 17 10"/>
