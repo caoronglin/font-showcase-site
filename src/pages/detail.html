@@ -175,11 +175,48 @@
           </div>
 
           <div class="info-card info-card--full">
+            <h3 class="info-card__title">CSS 代码</h3>
+            <div class="css-code-section" id="css-code-section">
+              <!-- Dynamic content -->
+            </div>
+          </div>
+
+          <div class="info-card info-card--full">
             <h3 class="info-card__title">授权信息</h3>
             <div class="license-info" id="license-info">
               <!-- Dynamic content -->
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Font Features -->
+    <section class="font-features section section-lg">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="text-display-md">字体特性</h2>
+          <p class="text-body">OpenType 特性与使用场景</p>
+        </header>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <h3 class="feature-card__title">OpenType 特性</h3>
+            <div class="ot-features" id="ot-features">
+              <!-- Dynamic content -->
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <h3 class="feature-card__title">使用场景</h3>
+            <div class="usage-scenarios" id="usage-scenarios">
+              <!-- Dynamic content -->
+            </div>
+          </div>
+        </div>
+
+        <div class="size-samples" id="size-samples">
+          <!-- Dynamic content -->
         </div>
       </div>
     </section>
@@ -246,6 +283,37 @@
 
   <!-- Toast Container -->
   <div class="toast-container" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Download Modal -->
+  <div class="modal-overlay" id="download-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="modal">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modal-title">下载字体</h2>
+        <button class="modal-close" id="modal-close" aria-label="关闭对话框">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="download-options" id="download-options">
+          <!-- Dynamic content -->
+        </div>
+        <div class="download-info">
+          <p class="download-info__text">选择您需要的字体格式进行下载</p>
+          <ul class="download-info__list">
+            <li><strong>WOFF2:</strong> 现代浏览器优化格式，体积最小</li>
+            <li><strong>TTF:</strong> 通用格式，兼容性最佳</li>
+            <li><strong>OTF:</strong> 专业排版格式，支持更多特性</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="modal-cancel">取消</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Scripts -->
   <script type="module" src="../scripts/detail.js"></script>

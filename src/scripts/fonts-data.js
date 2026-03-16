@@ -18,7 +18,14 @@ export const fonts = [
     weights: [400, 500, 700],
     license: '免费商用',
     url: 'https://developer.harmonyos.com/',
-    featured: true
+    featured: true,
+    downloads: [
+      { format: 'woff2', url: 'https://cdn.jsdelivr.net/npm/harmonyos-sans@1.0.0/dist/HarmonyOS_Sans_SC_Regular.woff2', size: '2.4MB' },
+      { format: 'ttf', url: 'https://cdn.jsdelivr.net/npm/harmonyos-sans@1.0.0/dist/HarmonyOS_Sans_SC_Regular.ttf', size: '4.1MB' }
+    ],
+    cssCode: `font-family: 'HarmonyOS Sans', sans-serif;`,
+    characterSet: '简体中文、繁体中文、拉丁、西里尔、希腊、阿拉伯',
+    openTypeFeatures: ['kern', 'liga', 'calt', 'mark', 'mkmk']
   },
   {
     id: 'honor-sans-jeb',
@@ -34,7 +41,15 @@ export const fonts = [
     weights: [400, 500, 600, 700],
     license: '免费商用',
     url: 'https://www.hihonor.com/',
-    featured: true
+    featured: true,
+    downloads: [
+      { format: 'woff2', url: 'https://cdn.jsdelivr.net/gh/honor/font/HonorSansJEB-Regular.woff2', size: '2.6MB' },
+      { format: 'ttf', url: 'https://cdn.jsdelivr.net/gh/honor/font/HonorSansJEB-Regular.ttf', size: '4.3MB' },
+      { format: 'otf', url: 'https://cdn.jsdelivr.net/gh/honor/font/HonorSansJEB-Regular.otf', size: '5.1MB' }
+    ],
+    cssCode: `@import url('https://cdn.jsdelivr.net/gh/honor/font/HonorSansJEB.css');\n\nfont-family: 'Honor Sans JEB', sans-serif;`,
+    characterSet: '简体中文、拉丁、西里尔',
+    openTypeFeatures: ['kern', 'liga']
   },
   {
     id: 'opposans',
@@ -50,7 +65,15 @@ export const fonts = [
     weights: [300, 400, 500, 700],
     license: '免费商用',
     url: 'https://www.oppo.com/',
-    featured: false
+    featured: false,
+    downloads: [
+      { format: 'woff2', url: 'https://cdn.jsdelivr.net/gh/oppo/OPPO-Sans/OPPOSans-Regular.woff2', size: '2.5MB' },
+      { format: 'ttf', url: 'https://cdn.jsdelivr.net/gh/oppo/OPPO-Sans/OPPOSans-Regular.ttf', size: '4.0MB' },
+      { format: 'otf', url: 'https://cdn.jsdelivr.net/gh/oppo/OPPO-Sans/OPPOSans-Regular.otf', size: '4.8MB' }
+    ],
+    cssCode: `@import url('https://cdn.jsdelivr.net/gh/oppo/OPPO-Sans/OPPOSans.css');\n\nfont-family: 'OPPO Sans', sans-serif;`,
+    characterSet: '简体中文、拉丁、希腊、西里尔',
+    openTypeFeatures: ['kern', 'liga']
   },
   {
     id: 'misans',
@@ -66,7 +89,15 @@ export const fonts = [
     weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
     license: '免费商用',
     url: 'https://miui.com/',
-    featured: true
+    featured: true,
+    downloads: [
+      { format: 'woff2', url: 'https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Normal.woff2', size: '3.1MB' },
+      { format: 'ttf', url: 'https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Normal.ttf', size: '5.2MB' },
+      { format: 'otf', url: 'https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Normal.otf', size: '6.0MB' }
+    ],
+    cssCode: `@import url('https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Normal.min.css');\n\nfont-family: 'MiSans', sans-serif;`,
+    characterSet: '简体中文、繁体中文、拉丁、西里尔、希腊、日文',
+    openTypeFeatures: ['kern', 'liga', 'calt']
   },
   {
     id: 'alibabapuhuiti',
@@ -82,7 +113,15 @@ export const fonts = [
     weights: [400, 500, 700, 900],
     license: '免费商用',
     url: 'https://fonts.alibabadesign.com/',
-    featured: true
+    featured: true,
+    downloads: [
+      { format: 'woff2', url: 'https://cdn.jsdelivr.net/npm/alibaba-puhuiti@1.0.0/dist/AlibabaPuHuiTi-Regular.woff2', size: '2.7MB' },
+      { format: 'ttf', url: 'https://cdn.jsdelivr.net/npm/alibaba-puhuiti@1.0.0/dist/AlibabaPuHuiTi-Regular.ttf', size: '4.5MB' },
+      { format: 'otf', url: 'https://cdn.jsdelivr.net/npm/alibaba-puhuiti@1.0.0/dist/AlibabaPuHuiTi-Regular.otf', size: '5.3MB' }
+    ],
+    cssCode: `@import url('https://cdn.jsdelivr.net/npm/alibaba-puhuiti@1.0.0/dist/font.css');\n\nfont-family: 'Alibaba PuHuiTi', sans-serif;`,
+    characterSet: '简体中文、繁体中文、拉丁、西里尔、希腊、阿拉伯、泰文',
+    openTypeFeatures: ['kern', 'liga', 'calt']
   },
   {
     id: 'sourcehansans',
@@ -98,7 +137,15 @@ export const fonts = [
     weights: [200, 300, 400, 500, 700, 900],
     license: 'OFL-1.1',
     url: 'https://github.com/adobe-fonts/source-han-sans/',
-    featured: true
+    featured: true,
+    downloads: [
+      { format: 'woff2', url: 'https://cdn.jsdelivr.net/npm/source-han-sans-sc@2.004/woff2/SourceHanSansSC-Regular.woff2', size: '4.2MB' },
+      { format: 'ttf', url: 'https://cdn.jsdelivr.net/npm/source-han-sans-sc@2.004/ttf/SourceHanSansSC-Regular.ttf', size: '6.8MB' },
+      { format: 'otf', url: 'https://cdn.jsdelivr.net/npm/source-han-sans-sc@2.004/otf/SourceHanSansSC-Regular.otf', size: '7.5MB' }
+    ],
+    cssCode: `@import url('https://cdn.jsdelivr.net/npm/source-han-sans-sc@2.004/all.min.css');\n\nfont-family: 'Source Han Sans SC', sans-serif;`,
+    characterSet: '简体中文、繁体中文、日文、韩文、拉丁、西里尔、希腊、泰文',
+    openTypeFeatures: ['kern', 'liga', 'calt', 'halt', 'vhal']
   },
   {
     id: 'sourcehanserifs',
@@ -114,7 +161,15 @@ export const fonts = [
     weights: [200, 300, 400, 500, 700, 900],
     license: 'OFL-1.1',
     url: 'https://github.com/adobe-fonts/source-han-serif/',
-    featured: false
+    featured: false,
+    downloads: [
+      { format: 'woff2', url: 'https://cdn.jsdelivr.net/npm/source-han-serif-sc@2.001/woff2/SourceHanSerifSC-Regular.woff2', size: '4.5MB' },
+      { format: 'ttf', url: 'https://cdn.jsdelivr.net/npm/source-han-serif-sc@2.001/ttf/SourceHanSerifSC-Regular.ttf', size: '7.2MB' },
+      { format: 'otf', url: 'https://cdn.jsdelivr.net/npm/source-han-serif-sc@2.001/otf/SourceHanSerifSC-Regular.otf', size: '8.0MB' }
+    ],
+    cssCode: `@import url('https://cdn.jsdelivr.net/npm/source-han-serif-sc@2.001/all.min.css');\n\nfont-family: 'Source Han Serif SC', serif;`,
+    characterSet: '简体中文、繁体中文、日文、韩文、拉丁、西里尔、希腊',
+    openTypeFeatures: ['kern', 'liga', 'calt', 'palt', 'vpal']
   },
   {
     id: 'lxgwwenkais',
@@ -130,7 +185,15 @@ export const fonts = [
     weights: [300, 400, 700],
     license: 'OFL-1.1',
     url: 'https://github.com/lxgw/LxgwWenKai/',
-    featured: true
+    featured: true,
+    downloads: [
+      { format: 'woff2', url: 'https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/LXGWWenKai-Regular.woff2', size: '3.8MB' },
+      { format: 'ttf', url: 'https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/LXGWWenKai-Regular.ttf', size: '6.1MB' },
+      { format: 'otf', url: 'https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/LXGWWenKai-Regular.otf', size: '7.0MB' }
+    ],
+    cssCode: `@import url('https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css');\n\nfont-family: 'LXGW WenKai', cursive;`,
+    characterSet: '简体中文、繁体中文、拉丁、西里尔、日文假名',
+    openTypeFeatures: ['kern', 'liga']
   },
   {
     id: 'cascadiacode',
@@ -146,7 +209,15 @@ export const fonts = [
     weights: [400, 700],
     license: 'OFL-1.1',
     url: 'https://github.com/microsoft/cascadia-code/',
-    featured: false
+    featured: false,
+    downloads: [
+      { format: 'woff2', url: 'https://cdn.jsdelivr.net/npm/cascadia-code@2407.24/fonts/CascadiaCode-Regular.woff2', size: '1.9MB' },
+      { format: 'ttf', url: 'https://cdn.jsdelivr.net/npm/cascadia-code@2407.24/fonts/CascadiaCode-Regular.ttf', size: '3.2MB' },
+      { format: 'otf', url: 'https://cdn.jsdelivr.net/npm/cascadia-code@2407.24/fonts/CascadiaCode-Regular.otf', size: '3.8MB' }
+    ],
+    cssCode: `@import url('https://cdn.jsdelivr.net/npm/cascadia-code@2407.24/fonts/cascadia-code.min.css');\n\nfont-family: 'Cascadia Code', monospace;`,
+    characterSet: '拉丁、西里尔、希腊、编程连字、Powerline 符号',
+    openTypeFeatures: ['liga', 'calt', 'zero', 'ss01', 'ss02', 'ss03']
   },
   {
     id: 'smileySans',
@@ -162,7 +233,15 @@ export const fonts = [
     weights: [400],
     license: 'OFL-1.1',
     url: 'https://github.com/atelier-anchor/smiley-sans/',
-    featured: true
+    featured: true,
+    downloads: [
+      { format: 'woff2', url: 'https://cdn.jsdelivr.net/npm/smiley-sans@1.1.1/dist/SmileySans-Oblique.woff2', size: '2.1MB' },
+      { format: 'ttf', url: 'https://cdn.jsdelivr.net/npm/smiley-sans@1.1.1/dist/SmileySans-Oblique.ttf', size: '3.5MB' },
+      { format: 'otf', url: 'https://cdn.jsdelivr.net/npm/smiley-sans@1.1.1/dist/SmileySans-Oblique.otf', size: '4.2MB' }
+    ],
+    cssCode: `@import url('https://cdn.jsdelivr.net/npm/smiley-sans@1.1.1/dist/SmileySans-Oblique.css');\n\nfont-family: 'Smiley Sans', sans-serif;`,
+    characterSet: '简体中文、拉丁、标点符号',
+    openTypeFeatures: ['liga', 'calt', 'dlig']
   }
 ];
 

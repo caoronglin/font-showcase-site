@@ -1,0 +1,59 @@
+<h2>设计方向探索</h2>
+<p class="subtitle">font-showcase-site 全面重构 - 请选择您偏好的整体设计风格</p>
+
+<div class="section">
+  <p>我们正在为字体展示网站进行全面重构。请选择最符合您期望的设计方向：</p>
+</div>
+
+<div class="cards">
+  <div class="card" data-choice="editorial" onclick="toggleSelect(this)">
+    <div class="card-image" style="background: linear-gradient(135deg, #0a0a0a 0%, #2d2d2d 100%); padding: 24px; min-height: 120px;">
+      <div style="color: white; font-family: serif; font-size: 32px; letter-spacing: -0.02em;">Editorial</div>
+      <div style="color: rgba(255,255,255,0.6); font-size: 12px; margin-top: 8px;">编辑风格</div>
+    </div>
+    <div class="card-body">
+      <h3>A. 编辑杂志风格</h3>
+      <p>大胆的排版、强对比度、大量留白。类似高端杂志或设计年鉴。强调字体的艺术性展示。</p>
+      <div class="pros-cons" style="margin-top: 12px;">
+        <div class="pros"><h4>优点</h4><ul><li>高级感强</li><li>突出字体</li><li>视觉冲击力</li></ul></div>
+        <div class="cons"><h4>缺点</h4><ul><li>信息密度低</li><li>需要更多滚动</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-choice="functional" onclick="toggleSelect(this)">
+    <div class="card-image" style="background: linear-gradient(135deg, #faf9f7 0%, #e0dbd1 100%); padding: 24px; min-height: 120px; border: 1px solid #e0dbd1;">
+      <div style="color: #0a0a0a; font-family: sans-serif; font-size: 24px;">Functional</div>
+      <div style="color: #595959; font-size: 12px; margin-top: 8px;">功能优先</div>
+    </div>
+    <div class="card-body">
+      <h3>B. 功能工具风格</h3>
+      <p>清晰的网格布局、高效的筛选系统、快速预览。类似Google Fonts或Adobe Fonts。强调实用性和效率。</p>
+      <div class="pros-cons" style="margin-top: 12px;">
+        <div class="pros"><h4>优点</h4><ul><li>信息密度高</li><li>快速找到字体</li><li>用户友好</li></ul></div>
+        <div class="cons"><h4>缺点</h4><ul><li>视觉冲击弱</li><li>同质化风险</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-choice="experimental" onclick="toggleSelect(this)">
+    <div class="card-image" style="background: linear-gradient(135deg, #e74c3c 0%, #b87333 50%, #4a6741 100%); padding: 24px; min-height: 120px;">
+      <div style="color: white; font-family: fantasy; font-size: 28px; transform: rotate(-3deg); display: inline-block;">Experimental</div>
+      <div style="color: rgba(255,255,255,0.8); font-size: 12px; margin-top: 12px;">实验探索</div>
+    </div>
+    <div class="card-body">
+      <h3>C. 实验艺术风格</h3>
+      <p>独特的动画效果、非线性布局、交互式探索。每个字体卡片都是一个小型艺术品。强调创意和个性。</p>
+      <div class="pros-cons" style="margin-top: 12px;">
+        <div class="pros"><h4>优点</h4><ul><li>独特难忘</li><li>创意表现</li><li>品牌差异化</li></ul></div>
+        <div class="cons"><h4>缺点</h4><ul><li>开发复杂</li><li>可能影响性能</li></ul></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top: 24px; padding: 16px; background: rgba(0,0,0,0.05); border-radius: 8px;">
+  <p style="margin: 0; font-size: 14px; color: #666;">
+    <strong>提示：</strong>点击卡片选择一个方向。这些风格可以混合 - 例如"编辑风格"的视觉语言 + "功能工具"的交互设计。
+  </p>
+</div>
